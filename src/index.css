@@ -1,0 +1,199 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(1 0 0);    /* White */
+  --foreground: oklch(0.6 0.25 25); /* Gaming Red */
+  --card: oklch(1 0 0);          /* White */
+  --card-foreground: oklch(0.6 0.25 25);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.6 0.25 25);
+  --primary: oklch(0.6 0.25 25); /* Gaming Red */
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.98 0.01 25); /* Very Light Red/White */
+  --secondary-foreground: oklch(0.6 0.25 25);
+  --muted: oklch(0.98 0.01 25);
+  --muted-foreground: oklch(0.6 0.25 25);
+  --accent: oklch(0.6 0.25 25);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.5 0.2 25);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.9 0.05 25);  /* Light Red Border */
+  --input: oklch(1 0 0);
+  --ring: oklch(0.6 0.25 25);
+  --radius: 0rem; 
+}
+
+.dark {
+  --background: oklch(0.1 0 0);    /* Blackish */
+  --foreground: oklch(1 0 0);      /* White */
+  --card: oklch(0.15 0 0);         /* Dark Gray */
+  --card-foreground: oklch(1 0 0);
+  --popover: oklch(0.15 0 0);
+  --popover-foreground: oklch(1 0 0);
+  --primary: oklch(0.6 0.25 25);   /* Gaming Red */
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.2 0 0);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.2 0 0);
+  --muted-foreground: oklch(0.7 0 0);
+  --accent: oklch(0.6 0.25 25);
+  --accent-foreground: oklch(1 0 0);
+  --border: oklch(0.3 0 0);        /* Dark Border */
+  --input: oklch(0.2 0 0);
+  --ring: oklch(0.6 0.25 25);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+    font-family: var(--font-sans);
+  }
+}
+
+.text-shadow-heavy {
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+.dark .text-shadow-heavy {
+  text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.2);
+}
+
+.text-shadow-glow {
+  text-shadow: 0 0 10px var(--primary);
+}
+
+/* Typography Overrides */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-black italic tracking-tighter uppercase;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-primary;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-foreground;
+}
+
+/* Rich Text Content Styling */
+.prose {
+  @apply max-w-none transition-colors duration-300;
+}
+
+/* Light Mode: White background, Black text for blog content */
+:root:not(.dark) .prose {
+  @apply text-black;
+}
+:root:not(.dark) .prose p, 
+:root:not(.dark) .prose span, 
+:root:not(.dark) .prose div {
+  @apply text-black;
+}
+:root:not(.dark) .prose h1, 
+:root:not(.dark) .prose h2, 
+:root:not(.dark) .prose h3, 
+:root:not(.dark) .prose h4 {
+  @apply text-primary;
+}
+:root:not(.dark) .prose strong {
+  @apply text-black font-black;
+}
+:root:not(.dark) .prose blockquote {
+  @apply border-l-4 border-primary bg-primary/5 py-2 px-6 italic text-gray-700 font-medium;
+}
+
+/* Dark Mode: Black background, White/Red text for blog content */
+.dark .prose {
+  @apply text-foreground;
+}
+.dark .prose strong {
+  @apply text-primary;
+}
+.dark .prose blockquote {
+  @apply border-l-4 border-primary bg-primary/10 py-2 px-6 italic text-gray-300;
+}
+
+.prose img {
+  @apply rounded-none border-4 border-primary shadow-xl mx-auto block max-w-full h-auto;
+}
+
+/* Scalable Image Sizes (Blogger Style) */
+.prose img.img-small {
+  @apply w-[200px];
+}
+.prose img.img-medium {
+  @apply w-[400px];
+}
+.prose img.img-large {
+  @apply w-[800px];
+}
+.prose img.img-full {
+  @apply w-full;
+}
+
+.prose iframe {
+  @apply w-full aspect-video rounded-none border-4 border-primary shadow-xl my-8;
+}
+
+.prose a {
+  @apply text-primary underline font-bold pointer-events-auto;
+}
+
+/* Embedded Link in Image Fix */
+.prose a:has(img) {
+  @apply no-underline border-none p-0 inline-block;
+}
+
+/* Theme specific overrides for buttons and specific blocks */
+:root:not(.dark) .theme-invert-text {
+  @apply text-primary;
+}
+.dark .theme-invert-text {
+  @apply text-white;
+}
+
+/* Mobile Blog Post Background */
+@media (max-width: 768px) {
+  /* In Light Theme, background stays white as requested */
+  :root:not(.dark) .blog-post-content {
+    @apply bg-white;
+  }
+  
+  /* In Dark Theme, mobile post content could be even darker */
+  .dark .blog-post-content {
+    @apply bg-black p-4;
+  }
+}

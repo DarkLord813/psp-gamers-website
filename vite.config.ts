@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
@@ -10,8 +10,8 @@ dns.setDefaultResultOrder("verbatim");
 
 // https://vite.dev/config/
 export default defineConfig({
-  // *** THIS IS THE MISSING LINE ***
-  base: "/psp-gamers-website/", 
+  // *** ADD THIS LINE BELOW ***
+  base: "/psp-gamers-website/",
   
   plugins: [
     react(),
@@ -35,4 +35,4 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-});
+}); 

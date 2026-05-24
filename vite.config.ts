@@ -10,9 +10,6 @@ dns.setDefaultResultOrder("verbatim");
 
 // https://vite.dev/config/
 export default defineConfig({
-  // ADD THIS LINE BELOW (REPLACE 'your-repo-name' with your actual repository name)
-  base: "/psp-gamers-website/", 
-  
   plugins: [
     react(),
     tailwindcss(),

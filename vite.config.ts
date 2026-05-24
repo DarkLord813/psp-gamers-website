@@ -10,6 +10,9 @@ dns.setDefaultResultOrder("verbatim");
 
 // https://vite.dev/config/
 export default defineConfig({
+  // *** THIS IS THE MISSING LINE ***
+  base: "/psp-gamers-website/", 
+  
   plugins: [
     react(),
     tailwindcss(),
